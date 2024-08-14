@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGPA and CGPA Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>SGPA and CGPA Calculator</h1>
+        
+        <h2>Semester SGPA Calculation</h2>
+        <div id="semesters">
+            <!-- Dynamic semester fields will be added here -->
+        </div>
+        <button type="button" onclick="addSemester()">Add Semester</button>
+        
+        <div id="semester-results">
+            <!-- SGPA results for all semesters will be displayed here -->
+        </div>
+
+        <h2>Overall CGPA Calculation</h2>
+        <form id="cgpa-form">
+            <button type="submit">Calculate CGPA</button>
+        </form>
+        
+        <div id="cgpa-results">
+            <!-- CGPA results will be displayed here -->
+        </div>
+    </div>
+
+    <script>
+        let semesterCount = 0;
+        let sgpas = [];
+        let semesterCredits = [];  // Store total credits per semester
+
+        function addSemester() {
+            semesterCount++;
+            const semesterDiv = document.createElement('div');
+            semesterDiv.classList.add('semester');
+            semesterDiv.innerHTML = `
+                <h3>Semester ${semesterCount}</h3>
+                <div id="courses-${semesterCount}" class="courses-container">
+                    <!-- Dynamic course fields will be added here -->
+                </div>
+                <button type="button" onclick="addCourse(${semesterCount})">Add Course to Semester ${semesterCount}</button>
+                <button type="button" onclick="calculateSGPA(${semesterCount})">Calculate SGPA for Semester ${semesterCount}</button>
+                <div id="sgpa-result-${semesterCount}">
+                    <!-- SGPA result for this semester will be displayed here -->
+                </div>
+            `;
+            document.getElementById('semesters').appendChild(semesterDiv);
+        }
+
+        function addCourse(semester) {
+            const coursesDiv = document.getElementById(`courses-${semester}`);
+            const courseCount = coursesDiv.querySelectorAll('.course').length + 1;
+            const courseDiv = document.createElement('div');
+            courseDiv.classList.add('course');  // Added class for styling
+            courseDiv.innerHTML = `
+                <div class="course-content">
+                    <label for="grade-${semester}-${courseCount}">Grade Point for Course ${courseCount}:</label>
+                    <input type="number" id="grade-${semester}-${courseCount}" name="grade-${semester}-${courseCount}" step="1" min="0" required>
+                </div>
+                <div class="course-content">
+                    <label for="credit-${semester}-${courseCount}">Credits Earned for Course ${courseCount}:</label>
+                    <input type="number" id="credit-${semester}-${courseCount}" name="credit-${semester}-${courseCount}" step="1" min="0" required>
+                </div>
+            `;
+            coursesDiv.appendChild(courseDiv);
+        }
+
+        function calculateSGPA(semester) {
+            let totalGradePoints = 0;
+            let totalCredits = 0;
+
+            const coursesDiv = document.getElementById(`courses-${semester}`);
+            const courseInputs = coursesDiv.querySelectorAll('input');
+
+            for (let i = 0; i < courseInputs.length; i += 2) {
+                const grade = parseInt(courseInputs[i].value) || 0;
+                const credit = parseInt(courseInputs[i + 1].value) || 0;
+                totalGradePoints += grade * credit;
+                totalCredits += credit;
+            }
+
+            const sgpa = totalGradePoints / totalCredits;
+            sgpas[semester - 1] = sgpa;
+            semesterCredits[semester - 1] = totalCredits;
+
+            document.getElementById(`sgpa-result-${semester}`).innerHTML = `
+                <p>SGPA for Semester ${semester}: ${sgpa.toFixed(2)}</p>
+            `;
+        }
+
+        document.getElementById('cgpa-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            calculateCGPA();
+        });
+
+        function calculateCGPA() {
+            let totalWeightedSGPA = 0;
+            let totalCredits = 0;
+
+            for (let i = 0; i < sgpas.length; i++) {
+                if (!isNaN(sgpas[i]) && !isNaN(semesterCredits[i])) {
+                    totalWeightedSGPA += sgpas[i] * semesterCredits[i];
+                    totalCredits += semesterCredits[i];
+                }
+            }
+
+            if (totalCredits === 0) {
+                alert('Please calculate SGPA for at least one semester.');
+                return;
+            }
+
+            const cgpa = totalWeightedSGPA / totalCredits;
+
+            document.getElementById('cgpa-results').innerHTML = `
+                <p>CGPA: ${cgpa.toFixed(2)}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
