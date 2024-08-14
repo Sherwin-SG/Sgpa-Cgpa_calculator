@@ -38,21 +38,31 @@
         let semesterCount = 0;
         let sgpas = [];
         let semesterCredits = [];  // Store total credits per semester
+        const availableSemesterIds = [];  // Track removed semester IDs
 
         function addSemester() {
-            semesterCount++;
+            let semesterId;
+
+            // Reuse an available ID if possible
+            if (availableSemesterIds.length > 0) {
+                semesterId = availableSemesterIds.pop();
+            } else {
+                semesterCount++;
+                semesterId = semesterCount;
+            }
+
             const semesterDiv = document.createElement('div');
             semesterDiv.classList.add('semester');
-            semesterDiv.id = `semester-${semesterCount}`;
+            semesterDiv.id = `semester-${semesterId}`;
             semesterDiv.innerHTML = `
-                <h3>Semester ${semesterCount}</h3>
-                <div id="courses-${semesterCount}" class="courses-container">
+                <h3>Semester ${semesterId}</h3>
+                <div id="courses-${semesterId}" class="courses-container">
                     <!-- Dynamic course fields will be added here -->
                 </div>
-                <button type="button" onclick="addCourse(${semesterCount})">Add Course to Semester ${semesterCount}</button>
-                <button type="button" onclick="calculateSGPA(${semesterCount})">Calculate SGPA for Semester ${semesterCount}</button>
-                <button type="button" class="remove-button" onclick="removeSemester(${semesterCount})">Remove Semester ${semesterCount}</button>
-                <div id="sgpa-result-${semesterCount}">
+                <button type="button" onclick="addCourse(${semesterId})">Add Course to Semester ${semesterId}</button>
+                <button type="button" onclick="calculateSGPA(${semesterId})">Calculate SGPA for Semester ${semesterId}</button>
+                <button type="button" class="remove-button" onclick="removeSemester(${semesterId})">Remove Semester ${semesterId}</button>
+                <div id="sgpa-result-${semesterId}">
                     <!-- SGPA result for this semester will be displayed here -->
                 </div>
             `;
@@ -85,6 +95,8 @@
                 // Remove the corresponding SGPA entry from the arrays
                 sgpas[semester - 1] = undefined;
                 semesterCredits[semester - 1] = undefined;
+                // Add the ID to availableSemesterIds
+                availableSemesterIds.push(semester);
             }
         }
 
