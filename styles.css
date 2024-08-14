@@ -7,20 +7,32 @@ body {
     color: #333;
     min-height: 100vh;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between; /* Ensure footer stays at the bottom */
 }
 
 /* Container for content */
 .container {
     max-width: 800px;
     margin: 20px auto;
-    padding: 30px;
+    padding: 20px;
     background: #fff;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background: linear-gradient(135deg, #f06, #f4f4f9); /* Match the body background gradient */
+}
+
+footer p {
+    margin: 0;
+    color: #333;
+}
+
 
 .container:hover {
     transform: translateY(-5px);
@@ -136,6 +148,22 @@ button:hover {
 .course-content input[type="number"] {
     margin-left: 0; /* Remove left margin from input fields */
 }
+
+/* Styles for the remove buttons */
+.remove-button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    border: none;
+    background-color: #f06;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.remove-button:hover {
+    background-color: #e05a8f;
+}
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {

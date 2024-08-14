@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SGPA and CGPA Calculator</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Link to the external stylesheet -->
 </head>
 <body>
     <div class="container">
@@ -30,6 +30,10 @@
         </div>
     </div>
 
+    <footer>
+        <p>&copy; 2024 Sherwin Gonsalves. All rights reserved.</p>
+    </footer>
+
     <script>
         let semesterCount = 0;
         let sgpas = [];
@@ -39,6 +43,7 @@
             semesterCount++;
             const semesterDiv = document.createElement('div');
             semesterDiv.classList.add('semester');
+            semesterDiv.id = `semester-${semesterCount}`;
             semesterDiv.innerHTML = `
                 <h3>Semester ${semesterCount}</h3>
                 <div id="courses-${semesterCount}" class="courses-container">
@@ -46,6 +51,7 @@
                 </div>
                 <button type="button" onclick="addCourse(${semesterCount})">Add Course to Semester ${semesterCount}</button>
                 <button type="button" onclick="calculateSGPA(${semesterCount})">Calculate SGPA for Semester ${semesterCount}</button>
+                <button type="button" class="remove-button" onclick="removeSemester(${semesterCount})">Remove Semester ${semesterCount}</button>
                 <div id="sgpa-result-${semesterCount}">
                     <!-- SGPA result for this semester will be displayed here -->
                 </div>
@@ -67,8 +73,24 @@
                     <label for="credit-${semester}-${courseCount}">Credits Earned for Course ${courseCount}:</label>
                     <input type="number" id="credit-${semester}-${courseCount}" name="credit-${semester}-${courseCount}" step="1" min="0" required>
                 </div>
+                <button type="button" class="remove-button" onclick="removeCourse(this)">Remove Course ${courseCount}</button>
             `;
             coursesDiv.appendChild(courseDiv);
+        }
+
+        function removeSemester(semester) {
+            const semesterDiv = document.getElementById(`semester-${semester}`);
+            if (semesterDiv) {
+                semesterDiv.remove();
+                // Remove the corresponding SGPA entry from the arrays
+                sgpas[semester - 1] = undefined;
+                semesterCredits[semester - 1] = undefined;
+            }
+        }
+
+        function removeCourse(button) {
+            const courseDiv = button.parentElement;
+            courseDiv.remove();
         }
 
         function calculateSGPA(semester) {
@@ -122,5 +144,6 @@
             `;
         }
     </script>
+    
 </body>
 </html>
