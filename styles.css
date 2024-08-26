@@ -1,4 +1,4 @@
-/* Base styles */
+
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
@@ -8,10 +8,10 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Ensure footer stays at the bottom */
+    justify-content: space-between; 
 }
 
-/* Container for content */
+
 .container {
     max-width: 800px;
     margin: 20px auto;
@@ -25,7 +25,7 @@ body {
 footer {
     text-align: center;
     padding: 10px;
-    background: linear-gradient(135deg, #f06, #f4f4f9); /* Match the body background gradient */
+    background: linear-gradient(135deg, #f06, #f4f4f9); 
 }
 
 footer p {
@@ -39,7 +39,7 @@ footer p {
     box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
 }
 
-/* Header styles */
+
 h1, h2, h3 {
     color: #333;
     margin-bottom: 15px;
@@ -47,7 +47,7 @@ h1, h2, h3 {
     letter-spacing: 1px;
 }
 
-/* Input styles */
+
 input[type="number"] {
     width: 100%;
     padding: 12px;
@@ -63,7 +63,7 @@ input[type="number"]:focus {
     outline: none;
 }
 
-/* Label styles */
+
 label {
     font-weight: bold;
     margin-bottom: 8px;
@@ -71,7 +71,6 @@ label {
     color: #555;
 }
 
-/* Button styles */
 button {
     background-color: #ff6f61;
     color: #fff;
@@ -89,7 +88,7 @@ button:hover {
     transform: translateY(-2px);
 }
 
-/* Semester section */
+
 .semester {
     margin-bottom: 25px;
     border: 1px solid #ddd;
@@ -102,7 +101,6 @@ button:hover {
     margin-top: 15px;
 }
 
-/* Results section */
 #results, #cgpa-results {
     margin-top: 25px;
     padding: 20px;
@@ -111,45 +109,43 @@ button:hover {
     background: #fefefe;
 }
 
-/* Courses container */
 .courses-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px; /* Adjust space between courses */
+    gap: 20px; 
 }
 
-/* Individual course style */
 .course {
     display: flex;
     flex-direction: column;
     flex: 1;
-    min-width: 45%; /* Ensure it takes up at least half the width of the container */
+    min-width: 45%; 
     box-sizing: border-box;
     padding: 10px;
-    border: 1px solid #ddd; /* Optional border for visual separation */
-    border-radius: 6px; /* Optional border radius for rounded corners */
+    border: 1px solid #ddd; 
+    border-radius: 6px; 
 }
 
-/* Grade point and credit earned labels/inputs side by side */
+
 .course-content {
     display: flex;
     justify-content: space-between;
-    gap: 10px; /* Space between label/input pairs */
+    gap: 10px; 
 }
 
-/* Label and input styling inside course-content */
+
 .course-content label,
 .course-content input {
     flex: 1;
-    margin: 0; /* Remove margins to align items */
+    margin: 0; 
 }
 
-/* Input adjustments for side-by-side alignment */
+
 .course-content input[type="number"] {
-    margin-left: 0; /* Remove left margin from input fields */
+    margin-left: 0; 
 }
 
-/* Styles for the remove buttons */
+
 .remove-button {
     margin-top: 10px;
     padding: 5px 10px;
@@ -165,7 +161,7 @@ button:hover {
 }
 
 
-/* Responsive adjustments */
+
 @media (max-width: 768px) {
     .container {
         padding: 20px;
