@@ -84,3 +84,6 @@ To calculate CGPA, use this formula:
 ## Conclusion
 
 This documentation provides a clear guide on using the SGPA and CGPA Calculator, including detailed explanations of how the calculations are performed. Use this guide to effectively navigate the application and understand the results.
+
+
+https://cgpa-sgpa-calc.netlify.app/
