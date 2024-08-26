@@ -51,7 +51,7 @@ The SGPA and CGPA Calculator helps users compute their semester and cumulative G
 
 To calculate SGPA for a semester, use this formula:
 
-\[ \text{SGPA} = \frac{\text{Total Grade Points}}{\text{Total Credits}} \]
+SGPA=Total Grade Points÷Total Credits
 
 - **Total Grade Points:** Add up (Grade Points for Each Course × Credits for Each Course).
 - **Total Credits:** Sum of credits for all courses in the semester.
@@ -68,7 +68,7 @@ To calculate SGPA for a semester, use this formula:
 
 To calculate CGPA, use this formula:
 
-\[ \text{CGPA} = \frac{\text{Total Weighted SGPA}}{\text{Total Credits}} \]
+CGPA=Total Weighted SGPA÷Total Credits
 
 - **Total Weighted SGPA:** Add up (SGPA for Each Semester × Credits for Each Semester).
 - **Total Credits:** Sum of credits for all semesters.
