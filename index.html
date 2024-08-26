@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SGPA and CGPA Calculator</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to the external stylesheet -->
+    <link rel="stylesheet" href="styles.css"> 
 </head>
 <body>
     <div class="container">
@@ -12,12 +12,12 @@
         
         <h2>Semester SGPA Calculation</h2>
         <div id="semesters">
-            <!-- Dynamic semester fields will be added here -->
+            
         </div>
         <button type="button" onclick="addSemester()">Add Semester</button>
         
         <div id="semester-results">
-            <!-- SGPA results for all semesters will be displayed here -->
+           
         </div>
 
         <h2>Overall CGPA Calculation</h2>
@@ -26,7 +26,7 @@
         </form>
         
         <div id="cgpa-results">
-            <!-- CGPA results will be displayed here -->
+            
         </div>
     </div>
 
@@ -37,13 +37,13 @@
     <script>
         let semesterCount = 0;
         let sgpas = [];
-        let semesterCredits = [];  // Store total credits per semester
-        const availableSemesterIds = [];  // Track removed semester IDs
+        let semesterCredits = [];  
+        const availableSemesterIds = [];
 
         function addSemester() {
             let semesterId;
 
-            // Reuse an available ID if possible
+           
             if (availableSemesterIds.length > 0) {
                 semesterId = availableSemesterIds.pop();
             } else {
@@ -73,7 +73,7 @@
             const coursesDiv = document.getElementById(`courses-${semester}`);
             const courseCount = coursesDiv.querySelectorAll('.course').length + 1;
             const courseDiv = document.createElement('div');
-            courseDiv.classList.add('course');  // Added class for styling
+            courseDiv.classList.add('course');  
             courseDiv.innerHTML = `
                 <div class="course-content">
                     <label for="grade-${semester}-${courseCount}">Grade Point for Course ${courseCount}:</label>
@@ -92,10 +92,10 @@
             const semesterDiv = document.getElementById(`semester-${semester}`);
             if (semesterDiv) {
                 semesterDiv.remove();
-                // Remove the corresponding SGPA entry from the arrays
+                
                 sgpas[semester - 1] = undefined;
                 semesterCredits[semester - 1] = undefined;
-                // Add the ID to availableSemesterIds
+               
                 availableSemesterIds.push(semester);
             }
         }
