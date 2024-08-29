@@ -1,4 +1,4 @@
-
+ 
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
@@ -11,7 +11,7 @@ body {
     justify-content: space-between; 
 }
 
-
+ 
 .container {
     max-width: 800px;
     margin: 20px auto;
@@ -33,12 +33,11 @@ footer p {
     color: #333;
 }
 
-
 .container:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
 }
-
+ 
 
 h1, h2, h3 {
     color: #333;
@@ -47,7 +46,7 @@ h1, h2, h3 {
     letter-spacing: 1px;
 }
 
-
+ 
 input[type="number"] {
     width: 100%;
     padding: 12px;
@@ -62,7 +61,7 @@ input[type="number"]:focus {
     border-color: #ff6f61;
     outline: none;
 }
-
+ 
 
 label {
     font-weight: bold;
@@ -71,6 +70,7 @@ label {
     color: #555;
 }
 
+ 
 button {
     background-color: #ff6f61;
     color: #fff;
@@ -88,7 +88,7 @@ button:hover {
     transform: translateY(-2px);
 }
 
-
+ 
 .semester {
     margin-bottom: 25px;
     border: 1px solid #ddd;
@@ -101,6 +101,7 @@ button:hover {
     margin-top: 15px;
 }
 
+ 
 #results, #cgpa-results {
     margin-top: 25px;
     padding: 20px;
@@ -109,43 +110,45 @@ button:hover {
     background: #fefefe;
 }
 
+ 
 .courses-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px; 
+    gap: 20px;  
 }
 
+ 
 .course {
     display: flex;
     flex-direction: column;
     flex: 1;
-    min-width: 45%; 
+    min-width: 45%;  
     box-sizing: border-box;
     padding: 10px;
     border: 1px solid #ddd; 
-    border-radius: 6px; 
+    border-radius: 6px;  
 }
 
-
+ 
 .course-content {
     display: flex;
     justify-content: space-between;
     gap: 10px; 
 }
 
-
+ 
 .course-content label,
 .course-content input {
     flex: 1;
-    margin: 0; 
+    margin: 0;  
 }
 
-
+ 
 .course-content input[type="number"] {
-    margin-left: 0; 
+    margin-left: 0;  
 }
 
-
+ 
 .remove-button {
     margin-top: 10px;
     padding: 5px 10px;
@@ -160,8 +163,7 @@ button:hover {
     background-color: #e05a8f;
 }
 
-
-
+ 
 @media (max-width: 768px) {
     .container {
         padding: 20px;
@@ -172,3 +174,54 @@ button:hover {
         font-size: 16px;
     }
 }
+
+ 
+#summary-section {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+#summary-section h2 {
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    color: #333;
+    text-align: center;
+}
+
+#summary-table-container {
+    overflow-x: auto;
+    margin-top: 10px;
+}
+
+#summary-table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#summary-table-container th, 
+#summary-table-container td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+#summary-table-container th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#summary-table-container tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#summary-table-container tfoot td {
+    font-weight: bold;
+    background-color: #e0e0e0;
+}
+
+
+

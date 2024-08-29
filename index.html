@@ -28,6 +28,15 @@
         <div id="cgpa-results">
             
         </div>
+
+        
+        <button type="button" id="generate-summary-button" onclick="generateSummaryTable()" style="display: none;">Generate Summary</button>
+
+        
+        <div id="summary-section" style="display: none;">
+            <h2>Summary</h2>
+            <div id="summary-table-container"></div>
+        </div>
     </div>
 
     <footer>
@@ -42,8 +51,6 @@
 
         function addSemester() {
             let semesterId;
-
-           
             if (availableSemesterIds.length > 0) {
                 semesterId = availableSemesterIds.pop();
             } else {
@@ -154,8 +161,50 @@
             document.getElementById('cgpa-results').innerHTML = `
                 <p>CGPA: ${cgpa.toFixed(2)}</p>
             `;
+
+            
+            document.getElementById('generate-summary-button').style.display = 'block';
+        }
+
+        function generateSummaryTable() {
+            const summaryTableContainer = document.getElementById('summary-table-container');
+            summaryTableContainer.innerHTML = '';
+
+         
+            const table = document.createElement('table');
+            table.innerHTML = `
+                <thead>
+                    <tr>
+                        <th>Semester</th>
+                        <th>SGPA</th>
+                        <th>Credits</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${sgpas.map((sgpa, index) => {
+                        if (!isNaN(sgpa)) {
+                            return `
+                                <tr>
+                                    <td>Semester ${index + 1}</td>
+                                    <td>${sgpa.toFixed(2)}</td>
+                                    <td>${semesterCredits[index]}</td>
+                                </tr>
+                            `;
+                        }
+                        return '';
+                    }).join('')}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="2"><strong>CGPA</strong></td>
+                        <td>${(sgpas.reduce((total, sgpa, i) => total + (sgpa * semesterCredits[i]), 0) / semesterCredits.reduce((a, b) => a + b, 0)).toFixed(2)}</td>
+                    </tr>
+                </tfoot>
+            `;
+
+            summaryTableContainer.appendChild(table);
+            document.getElementById('summary-section').style.display = 'block';
         }
     </script>
-    
 </body>
 </html>
